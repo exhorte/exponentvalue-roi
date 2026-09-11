@@ -129,4 +129,4 @@ sauvegarde aussi avant de reculer) — jamais la source du nombre affiché.
 Déployé sur Vercel (voir les notes de livraison pour l'URL et l'organisation
 du dépôt de code). Variables d'environnement requises côté Vercel :
 `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `APP_PASSWORD`.
-# exponentvalue-roi
+# ExponentValue ROI
