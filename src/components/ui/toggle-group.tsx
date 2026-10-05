@@ -12,6 +12,7 @@ const ToggleGroupContext = React.createContext<VariantProps<typeof toggleVariant
   variant: "default",
 });
 
+/** Groupe segmenté : fond gris, l'option active "se soulève" en blanc. */
 function ToggleGroup({
   className,
   variant,
@@ -24,7 +25,7 @@ function ToggleGroup({
     <ToggleGroupPrimitive.Root
       data-slot="toggle-group"
       className={cn(
-        "group/toggle-group flex w-fit items-center rounded-md border border-input overflow-hidden",
+        "group/toggle-group flex w-fit items-center gap-1 rounded-lg border bg-muted p-1",
         className
       )}
       {...props}
@@ -54,7 +55,8 @@ function ToggleGroupItem({
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        "rounded-none border-r border-input last:border-r-0 flex-1",
+        "flex-1 text-muted-foreground hover:bg-background/60",
+        "data-[state=on]:bg-background data-[state=on]:text-foreground data-[state=on]:shadow-xs",
         className
       )}
       {...props}

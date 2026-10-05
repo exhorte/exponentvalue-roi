@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CalendarDays, Table2, TrendingUp } from "lucide-react";
 
 import { saveProjectStep, autosaveProjectInputs } from "@/lib/actions";
 import { getStepNav, type ProjectRow } from "@/lib/wizard-steps";
@@ -12,7 +13,7 @@ import { computeProjectResults } from "@/lib/calc/engine";
 import { StepFormLayout } from "@/components/wizard/step-form-layout";
 import { SliderField } from "@/components/wizard/fields";
 import { CashFlowTable } from "@/components/wizard/cash-flow-table";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { FormSection, SectionHeader } from "@/components/wizard/form-section";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formatPercent } from "@/lib/utils";
@@ -56,77 +57,74 @@ export function TimelineForm({ project }: { project: ProjectRow }) {
       onPrevious={goBack}
       isSubmitting={formState.isSubmitting}
       isGoingBack={isGoingBack}
-      submitLabel="Voir les résultats →"
+      submitLabel="Voir les résultats"
     >
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Date de démarrage souhaitée</CardTitle>
-          <CardDescription>Optionnel — pour information dans le business case exporté.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex max-w-xs flex-col gap-1.5">
-            <Label htmlFor="dateDebut">Démarrage visé</Label>
-            <Input id="dateDebut" type="date" {...register("timeline.dateDebutSouhaitee")} />
-          </div>
-        </CardContent>
-      </Card>
+      <FormSection
+        icon={CalendarDays}
+        title="Date de démarrage souhaitée"
+        description="Optionnel — pour information dans le business case exporté."
+      >
+        <div className="flex max-w-xs flex-col gap-1.5">
+          <Label htmlFor="dateDebut" className="text-[13px] text-muted-foreground">
+            Démarrage visé
+          </Label>
+          <Input id="dateDebut" type="date" {...register("timeline.dateDebutSouhaitee")} />
+        </div>
+      </FormSection>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Courbe de montée en charge</CardTitle>
-          <CardDescription>
-            % du bénéfice réaliste (après coefficient de maturité) effectivement capté chaque année.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-5">
-          <Controller
-            control={control}
-            name="timeline.courbeMonteeEnCharge.0"
-            render={({ field }) => (
-              <SliderField
-                label="Année 1"
-                value={field.value}
-                onChange={field.onChange}
-                formatValue={(v) => formatPercent(v)}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="timeline.courbeMonteeEnCharge.1"
-            render={({ field }) => (
-              <SliderField
-                label="Année 2"
-                value={field.value}
-                onChange={field.onChange}
-                formatValue={(v) => formatPercent(v)}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="timeline.courbeMonteeEnCharge.2"
-            render={({ field }) => (
-              <SliderField
-                label="Année 3"
-                value={field.value}
-                onChange={field.onChange}
-                formatValue={(v) => formatPercent(v)}
-              />
-            )}
-          />
-        </CardContent>
-      </Card>
+      <FormSection
+        icon={TrendingUp}
+        title="Courbe de montée en charge"
+        description="% du bénéfice réaliste (après coefficient de maturité) effectivement capté chaque année."
+        contentClassName="flex flex-col gap-6"
+      >
+        <Controller
+          control={control}
+          name="timeline.courbeMonteeEnCharge.0"
+          render={({ field }) => (
+            <SliderField
+              label="Année 1"
+              value={field.value}
+              onChange={field.onChange}
+              formatValue={(v) => formatPercent(v)}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="timeline.courbeMonteeEnCharge.1"
+          render={({ field }) => (
+            <SliderField
+              label="Année 2"
+              value={field.value}
+              onChange={field.onChange}
+              formatValue={(v) => formatPercent(v)}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="timeline.courbeMonteeEnCharge.2"
+          render={({ field }) => (
+            <SliderField
+              label="Année 3"
+              value={field.value}
+              onChange={field.onChange}
+              formatValue={(v) => formatPercent(v)}
+            />
+          )}
+        />
+      </FormSection>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Flux de trésorerie résultants</CardTitle>
-          <CardDescription>Actualisés au taux défini à l&rsquo;étape Coûts.</CardDescription>
-        </CardHeader>
-        <CardContent className="px-0">
-          <CashFlowTable cashFlows={results.cashFlows} />
-        </CardContent>
-      </Card>
+      <div className="flex flex-col">
+        <SectionHeader
+          icon={Table2}
+          title="Flux de trésorerie résultants"
+          description="Actualisés au taux défini à l'étape Coûts."
+          className="px-0 pt-2 pb-4"
+        />
+        <CashFlowTable cashFlows={results.cashFlows} />
+      </div>
     </StepFormLayout>
   );
 }

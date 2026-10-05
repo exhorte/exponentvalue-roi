@@ -13,9 +13,9 @@ export function ExportPdfButton({ projectId }: { projectId: string }) {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Button asChild variant="outline" className="gap-1.5" onClick={() => setIsLoading(true)}>
+    <Button asChild onClick={() => setIsLoading(true)}>
       <a href={`/api/projets/${projectId}/pdf`} target="_blank" rel="noopener noreferrer">
-        <FileDown className="size-4" />
+        <FileDown />
         {isLoading ? "Génération…" : "Exporter en PDF"}
       </a>
     </Button>
