@@ -71,7 +71,7 @@ export function MetricPanelItem({
   unit?: string;
   hint?: ReactNode;
   icon: LucideIcon;
-  /** Pastille pleine (blanche) pour mettre en avant une métrique. */
+  /** Pastille pleine (vert menthe pâle) pour mettre en avant une métrique. */
   solidIcon?: boolean;
   tone?: Tone;
 }) {
@@ -93,7 +93,9 @@ export function MetricPanelItem({
       <span
         className={cn(
           "flex size-8 shrink-0 items-center justify-center rounded-full",
-          solidIcon ? "bg-panel-foreground text-panel" : "bg-white/10 text-panel-foreground"
+          solidIcon
+            ? "bg-panel-highlight text-panel-highlight-foreground"
+            : "bg-white/10 text-panel-foreground"
         )}
       >
         <Icon className="size-4" aria-hidden="true" />

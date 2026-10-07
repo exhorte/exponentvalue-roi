@@ -19,7 +19,7 @@ export function ThemeToggle() {
   };
 
   return (
-    <Button variant="outline" size="icon" onClick={toggle} aria-label="Basculer le thème clair / sombre">
+    <Button variant="secondary" size="icon" onClick={toggle} aria-label="Basculer le thème clair / sombre">
       <Moon className="dark:hidden" />
       <Sun className="hidden dark:block" />
     </Button>
