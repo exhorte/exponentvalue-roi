@@ -1,43 +1,51 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Toggle } from "@/components/ui/toggle";
+import { useId, type ReactNode } from "react";
+import type { LucideIcon } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { FormSection } from "@/components/wizard/form-section";
 import { cn } from "@/lib/utils";
 
 /** Bloc activable/désactivable pour une catégorie de coût ou de bénéfice. */
 export function CategoryCard({
+  icon,
   title,
   description,
   active,
   onToggle,
   children,
 }: {
+  icon?: LucideIcon;
   title: string;
   description?: string;
   active: boolean;
   onToggle: (active: boolean) => void;
   children: ReactNode;
 }) {
+  const switchId = useId();
+
   return (
-    <Card className={cn("transition-opacity", !active && "opacity-60")}>
-      <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
-        <div>
-          <CardTitle className="text-base">{title}</CardTitle>
-          {description && <CardDescription>{description}</CardDescription>}
+    <FormSection
+      icon={icon}
+      title={title}
+      description={description}
+      className={cn("transition-colors", !active && "bg-muted/40 shadow-none")}
+      contentClassName="grid gap-4 sm:grid-cols-2"
+      action={
+        <div className="flex shrink-0 items-center gap-2 pt-1">
+          <label htmlFor={switchId} className="hidden text-xs text-muted-foreground sm:block">
+            {active ? "Activé" : "Désactivé"}
+          </label>
+          <Switch
+            id={switchId}
+            checked={active}
+            onCheckedChange={onToggle}
+            aria-label={`Activer ${title}`}
+          />
         </div>
-        <Toggle
-          pressed={active}
-          onPressedChange={onToggle}
-          variant="outline"
-          size="sm"
-          aria-label={`Activer ${title}`}
-          className="shrink-0 data-[state=on]:bg-success data-[state=on]:text-success-foreground"
-        >
-          {active ? "Activé" : "Désactivé"}
-        </Toggle>
-      </CardHeader>
-      {active && <CardContent className="grid gap-4 sm:grid-cols-2">{children}</CardContent>}
-    </Card>
+      }
+    >
+      {active ? children : null}
+    </FormSection>
   );
 }

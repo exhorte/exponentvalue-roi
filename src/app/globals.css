@@ -3,74 +3,116 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+ * Thème monochrome : blanc, gris très clair, quasi-noir. Le noir profond est
+ * la couleur d'action (boutons principaux, en-têtes de tableau, panneau de
+ * métriques). Les seules couleurs franches sont sémantiques — GO / ÉVALUER /
+ * STOP — pour qu'elles ressortent immédiatement.
+ */
 :root {
-  --radius: 0.65rem;
+  --radius: 0.625rem;
 
   --background: 0 0% 100%;
-  --foreground: 240 10% 12%;
+  --foreground: 240 6% 10%;
 
   --card: 0 0% 100%;
-  --card-foreground: 240 10% 12%;
+  --card-foreground: 240 6% 10%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 12%;
+  --popover-foreground: 240 6% 10%;
 
-  /* Indigo primary — matches the "Nouveau Projet" accent seen in the reference prototype */
-  --primary: 243 75% 59%;
-  --primary-foreground: 0 0% 100%;
+  /* Noir légèrement bleuté mesuré sur la maquette (#14121F) : aplats d'action,
+     panneaux et en-têtes de tableau. Le texte, lui, reste en noir neutre. */
+  --primary: 249 27% 10%;
+  --primary-foreground: 0 0% 98%;
 
-  --secondary: 240 5% 96%;
-  --secondary-foreground: 240 10% 20%;
+  --secondary: 240 5% 95.5%;
+  --secondary-foreground: 240 6% 10%;
 
   --muted: 240 5% 96%;
   --muted-foreground: 240 4% 46%;
 
-  --accent: 243 75% 96%;
-  --accent-foreground: 243 75% 30%;
+  --accent: 240 5% 94%;
+  --accent-foreground: 240 6% 10%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --success: 142 71% 35%;
+  --success: 152 62% 34%;
   --success-foreground: 0 0% 100%;
-  --warning: 32 95% 48%;
+  --warning: 32 95% 42%;
   --warning-foreground: 0 0% 100%;
 
   --border: 240 6% 90%;
-  --input: 240 6% 90%;
-  --ring: 243 75% 59%;
+  --input: 240 6% 88%;
+  --ring: 240 5% 65%;
 
-  --chart-1: 243 75% 59%;
-  --chart-2: 142 71% 40%;
-  --chart-3: 32 95% 55%;
-  --chart-4: 291 64% 55%;
-  --chart-5: 199 89% 48%;
+  /* Barre latérale */
+  --sidebar: 330 10% 96%;
+  --sidebar-foreground: 240 4% 42%;
+  --sidebar-border: 240 6% 91%;
+  --sidebar-accent: 0 0% 100%;
+  --sidebar-accent-foreground: 240 6% 10%;
+
+  /* Panneau sombre (métriques clés, en-têtes de tableau) */
+  --panel: 249 27% 10%;
+  --panel-foreground: 0 0% 98%;
+  --panel-muted: 249 8% 66%;
+  --panel-border: 249 15% 19%;
+  /* Pastille mise en avant du panneau : vert menthe pâle (#E7F3EE), pas blanc. */
+  --panel-highlight: 155 33% 93%;
+  --panel-highlight-foreground: 249 27% 10%;
+  --panel-success: 152 60% 58%;
+  --panel-warning: 38 95% 62%;
+  --panel-destructive: 0 85% 70%;
+
+  --chart-1: 249 27% 10%;
+  --chart-2: 240 5% 74%;
+  --chart-3: 152 62% 38%;
+  --chart-4: 240 5% 46%;
+  --chart-5: 32 95% 50%;
 }
 
 .dark {
-  --background: 240 10% 8%;
+  --background: 240 6% 6%;
   --foreground: 0 0% 96%;
-  --card: 240 10% 11%;
+  --card: 240 6% 8.5%;
   --card-foreground: 0 0% 96%;
-  --popover: 240 10% 11%;
+  --popover: 240 6% 9%;
   --popover-foreground: 0 0% 96%;
-  --primary: 243 82% 70%;
-  --primary-foreground: 240 10% 10%;
-  --secondary: 240 6% 16%;
+  --primary: 0 0% 96%;
+  --primary-foreground: 240 6% 10%;
+  --secondary: 240 5% 14%;
   --secondary-foreground: 0 0% 96%;
-  --muted: 240 6% 16%;
-  --muted-foreground: 240 5% 65%;
-  --accent: 243 40% 20%;
-  --accent-foreground: 240 15% 92%;
-  --destructive: 0 70% 55%;
+  --muted: 240 5% 13%;
+  --muted-foreground: 240 5% 63%;
+  --accent: 240 5% 16%;
+  --accent-foreground: 0 0% 96%;
+  --destructive: 0 72% 58%;
   --destructive-foreground: 0 0% 100%;
-  --success: 142 60% 45%;
-  --success-foreground: 0 0% 100%;
-  --warning: 32 90% 55%;
-  --warning-foreground: 0 0% 10%;
-  --border: 240 6% 20%;
-  --input: 240 6% 20%;
-  --ring: 243 82% 70%;
+  --success: 152 55% 48%;
+  --success-foreground: 240 6% 8%;
+  --warning: 36 92% 56%;
+  --warning-foreground: 240 6% 8%;
+  --border: 240 5% 16%;
+  --input: 240 5% 20%;
+  --ring: 240 5% 45%;
+
+  --sidebar: 240 6% 7.5%;
+  --sidebar-foreground: 240 5% 63%;
+  --sidebar-border: 240 5% 14%;
+  --sidebar-accent: 240 5% 13%;
+  --sidebar-accent-foreground: 0 0% 96%;
+
+  --panel: 249 14% 13%;
+  --panel-foreground: 0 0% 98%;
+  --panel-muted: 249 6% 64%;
+  --panel-border: 249 10% 21%;
+
+  --chart-1: 0 0% 92%;
+  --chart-2: 240 5% 34%;
+  --chart-3: 152 55% 50%;
+  --chart-4: 240 5% 60%;
 }
 
 @theme inline {
@@ -97,6 +139,20 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-panel: hsl(var(--panel));
+  --color-panel-foreground: hsl(var(--panel-foreground));
+  --color-panel-muted: hsl(var(--panel-muted));
+  --color-panel-border: hsl(var(--panel-border));
+  --color-panel-success: hsl(var(--panel-success));
+  --color-panel-warning: hsl(var(--panel-warning));
+  --color-panel-destructive: hsl(var(--panel-destructive));
+  --color-panel-highlight: hsl(var(--panel-highlight));
+  --color-panel-highlight-foreground: hsl(var(--panel-highlight-foreground));
   --color-chart-1: hsl(var(--chart-1));
   --color-chart-2: hsl(var(--chart-2));
   --color-chart-3: hsl(var(--chart-3));
@@ -108,8 +164,8 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 
@@ -117,7 +173,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
   }
 }

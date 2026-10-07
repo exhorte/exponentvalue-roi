@@ -24,8 +24,10 @@ export function NumberField({
   className?: string;
 }) {
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
-      <Label htmlFor={registration.name}>{label}</Label>
+    <div className={cn("flex flex-col gap-2", className)}>
+      <Label htmlFor={registration.name} className="text-[13px] text-muted-foreground">
+        {label}
+      </Label>
       <div className="relative">
         <Input
           id={registration.name}
@@ -33,11 +35,13 @@ export function NumberField({
           min={min}
           step={step}
           inputMode="decimal"
-          className={suffix ? "pr-14" : undefined}
+          placeholder="0"
+          aria-invalid={error ? true : undefined}
+          className={cn("tabular-nums", suffix && "pr-20")}
           {...registration}
         />
         {suffix && (
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+          <span className="pointer-events-none absolute top-1/2 right-2 -translate-y-1/2 rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
             {suffix}
           </span>
         )}
@@ -67,14 +71,21 @@ export function SliderField({
   hint?: string;
 }) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between gap-2">
-        <Label>{label}</Label>
-        <span className="text-sm font-semibold tabular-nums text-primary">
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center justify-between gap-3">
+        <Label className="text-[13px] text-muted-foreground">{label}</Label>
+        <span className="rounded-md bg-muted px-2 py-0.5 text-xs font-semibold text-foreground tabular-nums">
           {formatValue ? formatValue(value) : value}
         </span>
       </div>
-      <Slider value={[value]} min={min} max={max} step={step} onValueChange={(v) => onChange(v[0])} />
+      <Slider
+        value={[value]}
+        min={min}
+        max={max}
+        step={step}
+        onValueChange={(v) => onChange(v[0])}
+        aria-label={label}
+      />
       {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
     </div>
   );

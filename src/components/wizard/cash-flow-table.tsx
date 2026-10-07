@@ -30,7 +30,7 @@ export function CashFlowTable({ cashFlows }: { cashFlows: CashFlowYear[] }) {
             <TableCell className="text-right tabular-nums">{formatEUR(c.fluxActualise)}</TableCell>
             <TableCell
               className={cn(
-                "text-right font-medium tabular-nums",
+                "text-right font-semibold tabular-nums",
                 c.cumulActualise >= 0 ? "text-success" : "text-destructive"
               )}
             >

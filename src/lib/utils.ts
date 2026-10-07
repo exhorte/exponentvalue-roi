@@ -30,3 +30,20 @@ export function formatMonths(value: number | null | undefined) {
   if (!Number.isFinite(value)) return "Non atteint sur 3 ans";
   return `${new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 1 }).format(value as number)} mois`;
 }
+
+/** Formatte un score sur 20 avec une décimale, format français (ex. "12,4"). */
+export function formatScore(value: number) {
+  return new Intl.NumberFormat("fr-FR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  }).format(Number.isFinite(value) ? value : 0);
+}
+
+/** Formatte une date ISO en date courte, format français (ex. "05 oct. 2026"). */
+export function formatShortDate(iso: string) {
+  return new Date(iso).toLocaleDateString("fr-FR", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}

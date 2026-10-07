@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { HeartHandshake, ShieldCheck, Zap } from "lucide-react";
 
 import { saveProjectStep, autosaveProjectInputs } from "@/lib/actions";
 import { getStepNav, type ProjectRow } from "@/lib/wizard-steps";
@@ -56,6 +57,7 @@ export function BeneficesForm({ project }: { project: ProjectRow }) {
       isGoingBack={isGoingBack}
     >
       <CategoryCard
+        icon={Zap}
         title="Gains de productivité"
         description="Temps libéré, réaffecté à un travail à valeur ajoutée."
         active={!!gainsActif}
@@ -113,6 +115,7 @@ export function BeneficesForm({ project }: { project: ProjectRow }) {
       </CategoryCard>
 
       <CategoryCard
+        icon={ShieldCheck}
         title="Réduction des erreurs"
         description="Erreurs évitées grâce à l'automatisation."
         active={!!erreursActif}
@@ -152,6 +155,7 @@ export function BeneficesForm({ project }: { project: ProjectRow }) {
       </CategoryCard>
 
       <CategoryCard
+        icon={HeartHandshake}
         title="Rétention de clients"
         description="Clients conservés grâce à une meilleure réactivité ou qualité de service."
         active={!!retentionActif}

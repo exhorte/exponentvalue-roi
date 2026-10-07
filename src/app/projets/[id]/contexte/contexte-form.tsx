@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { CircleAlert, Clock, UserMinus } from "lucide-react";
 
 import { saveProjectStep, autosaveProjectInputs } from "@/lib/actions";
 import { getStepNav, type ProjectRow } from "@/lib/wizard-steps";
@@ -55,6 +56,7 @@ export function ContexteForm({ project }: { project: ProjectRow }) {
       isGoingBack={isGoingBack}
     >
       <CategoryCard
+        icon={Clock}
         title="Temps perdu"
         description="Heures passées chaque mois sur des tâches manuelles répétitives."
         active={!!tempsPerduActif}
@@ -75,6 +77,7 @@ export function ContexteForm({ project }: { project: ProjectRow }) {
       </CategoryCard>
 
       <CategoryCard
+        icon={CircleAlert}
         title="Erreurs & corrections"
         description="Erreurs humaines qui coûtent du temps ou de l'argent à corriger."
         active={!!erreursActif}
@@ -95,6 +98,7 @@ export function ContexteForm({ project }: { project: ProjectRow }) {
       </CategoryCard>
 
       <CategoryCard
+        icon={UserMinus}
         title="Perte de clients"
         description="Clients perdus à cause de la lenteur ou de la qualité de service actuelle."
         active={!!perteClientsActif}
